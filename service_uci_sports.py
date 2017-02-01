@@ -7,11 +7,9 @@ import requests
 app = Flask(__name__)
 
 
-@app.route("/", methods=['GET', 'POST'])
+@app.route("/", methods=['GET'])
 def get_sport_schedules():
     list_of_games = []
-#     username = request.args.get('username')
-#     password = request.args.get('password')
     
     # page = requests.get('http://www.ucirvinesports.com/sports/m-baskbl/2016-17/schedule')
     # page = requests.get('http://www.ucirvinesports.com/sports/m-basebl/2016-17/schedule')
@@ -55,7 +53,6 @@ def get_sport_schedules():
             "time": times[i].strip()
         }
         
-        print("here",dict)
         list_of_games.append(dict)
 
     return jsonify(data=list_of_games)
