@@ -7,6 +7,7 @@ from json import dumps
 import requests
 from bottle import *
 
+
 @get('/')
 def process():
     print("starting...")
@@ -17,7 +18,7 @@ def process():
     date = []
     now = dt.now()
     #iterate from current day to the last day of the Month
-    for i in range(now.day, now.day+2):
+    for i in range(now.day, now.day+10):
         url = 'https://today.uci.edu/calendar/day/2017/'+ str(now.month) + '/' + str(i)
         crawler = Spider(url)
         
@@ -52,11 +53,11 @@ def process():
 
     for i in range(lowest):
         dicti = {
-            "title": titles[i],
             "location": location[i],
             "time": time[i],
             "description": descriptions[i],
-            "date": date[i]
+            "date": date[i],
+            "title": titles[i]
             }
         master_list.append(dicti)
 ##    print(master_list)
@@ -64,5 +65,5 @@ def process():
 
 
 if __name__ == '__main__':
-    run(host = 'localhost', port = 8080);
+    run(host = '169.234.17.28', port = 5000);
 ##    app.run(debug=True)
