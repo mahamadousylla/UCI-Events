@@ -19,6 +19,9 @@ def run_app():
 
     #date
     dates = tree.xpath('//*[@id]/h1/div/span/text()');
+    dates = list(map(str.strip, dates));
+    dates = [x for x in dates if x != '']
+##    print(dates);
 ##    print(dates);
 
 
@@ -34,27 +37,11 @@ def run_app():
     info = (filter(None, info));
     info = [ s.encode('ascii' , errors = 'ignore') for s in info];
     info = [s.decode() for s in info];
-##    print(info);
-    #streets
-    street = tree.xpath('//*[@id="post-1138"]/div[1]/div/div/div/address/span/span[1]/text()')[0]
 
-    #location
-    uci_loc = tree.xpath('//*[@id="post-1138"]/div[1]/div/div/div/address/span/span[1]/text()')[0]
-
-    #the cover
-    cover = tree.xpath('//*[@id="post-1138"]/div[1]/div/div/div/text()')[0]
-
-    #city 
-    city = tree.xpath('//*[@id="post-1138"]/div[1]/div/div/div/address/span/span[2]/text()')[0]
-
-    #state
-    state = tree.xpath('//*[@id="post-1138"]/div[1]/div/div/div/address/span/abbr/text()')[0]
-
-    #zip code
-    zip_code = tree.xpath('///*[@id="post-1138"]/div[1]/div/div/div/address/span/span[3]/text()')[0]
+    
 
 
-    address = cover.strip() + ", " + street.strip() + ", " +  city.strip() + " "  + state.strip() + " " +  zip_code.strip();
+    address = "The Cove @ UCI 5141 California Ave Irvine, CA 92617"
 
     master_list = [];
 
@@ -63,12 +50,13 @@ def run_app():
             "title": titles[i].strip(),
             "date": dates[i].strip(),
             "location": address.strip(),
-            "eventInfo": info[i].strip()
+            "Info": info[i].strip()
             }
         master_list.append(obj);
 
     return jsonify(data = master_list);
 
 if __name__ == "__main__":
+
     app.run(debug=True);
-    run_app();    
+       
