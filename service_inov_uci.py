@@ -6,12 +6,12 @@ from flask import request
 from flask import jsonify
 import requests
 
-app = Flask(__name__)
+##app = Flask(__name__)
 
 
 
 #Service Innovation UCI
-@app.route("/", methods=['GET'])
+##@app.route("/", methods=['GET'])
 def run_app():
     url = 'http://innovation.uci.edu/events/'
     page = requests.get(url)
@@ -54,9 +54,9 @@ def run_app():
             }
         master_list.append(obj);
 
-    return jsonify(data = master_list);
+    return master_list;
 
-if __name__ == "__main__":
-
-    app.run(debug=True);
+##if __name__ == "__main__":
+##
+##    app.run(debug=True);
        

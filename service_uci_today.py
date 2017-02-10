@@ -1,16 +1,15 @@
 from WebCrawler import Spider
-import csv
+
 from datetime import datetime as dt
 from calendar import monthrange
+from flask import Flask
 from flask import jsonify
-from json import dumps
 import requests
-from bottle import *
 
+##app = Flask(__name__);
 
-@get('/')
+##@app.route("/", methods=['GET'])
 def process():
-    print("starting...")
     titles = []
     time = []
     descriptions = []
@@ -47,23 +46,22 @@ def process():
             if titles[i] == 'Striking a Balance: Conservation and...':
                 time.insert(i, 'x')
         
-    master_list = list();
+    master_list = []
     ##print(len(location), len(titles), len(time), len(descriptions));
     lowest = min(len(location), len(titles), len(time), len(descriptions))
-
     for i in range(lowest):
         dicti = {
-            "location": location[i],
-            "time": time[i],
-            "description": descriptions[i],
-            "date": date[i],
-            "title": titles[i]
+            "location": location[i].strip(),
+            "time": time[i].strip(),
+            "description": descriptions[i].strip(),
+            "date": date[i].strip(),
+            "title": titles[i].strip()
             }
         master_list.append(dicti)
-##    print(master_list)
-    return '<pre>{}</pre>'.format(dumps(master_list, indent = 4, sort_keys = True))
+   
+    return master_list
 
-
-if __name__ == '__main__':
-    run(host = '169.234.17.28', port = 5000);
-##    app.run(debug=True)
+##if __name__ == '__main__':
+####    run(host = '127.0.0.1', port = 5000);
+##    app.run(host = '127.0.0.2',debug=True)
+####    process();
