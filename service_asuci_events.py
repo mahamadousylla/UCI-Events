@@ -38,7 +38,7 @@ def get_asuci_events():
         }
          
         list_of_events.append(dict)
-#     print(list_of_events)
+
     return jsonify(data=list_of_events)
 
 

@@ -31,11 +31,11 @@ def get_sport_schedules(param):
     locations = tree.xpath('//td[@class="e_notes"]/text()')
     scores = tree.xpath('//td[@class="e_result"]/text()')
     times = tree.xpath('//td[@class="e_status"]/text()')
-#     print("dates", dates)
-#     print("opponents", opponents)
-#     print("locations", locations)
-#     print("scores", scores)
-#     print("times", times)
+    print("dates", dates)
+    print("opponents", opponents)
+    print("locations", locations)
+    print("scores", scores)
+    print("times", times)
     
     if param == "w-track":
         opponents = tree.xpath('//span[@class="e_teamname e_opponent_name e_home" or @class="e_teamname e_opponent_name"]/text()')
