@@ -19,6 +19,7 @@
 		B86BC22D1E444DCD0005DD31 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B86BC22B1E444DCD0005DD31 /* LaunchScreen.storyboard */; };
 		B86BC2381E444DCD0005DD31 /* NextGenTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B86BC2371E444DCD0005DD31 /* NextGenTests.swift */; };
 		B86BC2431E444DCE0005DD31 /* NextGenUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B86BC2421E444DCE0005DD31 /* NextGenUITests.swift */; };
+		B8B167371E6661C600A10D64 /* Sports_TableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8B167361E6661C500A10D64 /* Sports_TableViewCell.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -57,6 +58,7 @@
 		B86BC23E1E444DCE0005DD31 /* NextGenUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = NextGenUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		B86BC2421E444DCE0005DD31 /* NextGenUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NextGenUITests.swift; sourceTree = "<group>"; };
 		B86BC2441E444DCE0005DD31 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		B8B167361E6661C500A10D64 /* Sports_TableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Sports_TableViewCell.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -112,6 +114,7 @@
 				B86446E41E5D162E00E4A2A4 /* Login_ViewController.swift */,
 				B86446E61E5D178600E4A2A4 /* Categories_ViewController.swift */,
 				B86BC2261E444DCD0005DD31 /* Main.storyboard */,
+				B8B167361E6661C500A10D64 /* Sports_TableViewCell.swift */,
 				B86446F41E5D212700E4A2A4 /* UCI-Today_ViewController.swift */,
 				B86446F21E5D1FF600E4A2A4 /* ASUCI_ViewController.swift */,
 				B86446E81E5D1A0300E4A2A4 /* Sports_ViewController.swift */,
@@ -280,6 +283,7 @@
 				B86BC2231E444DCD0005DD31 /* AppDelegate.swift in Sources */,
 				B86446E71E5D178600E4A2A4 /* Categories_ViewController.swift in Sources */,
 				B86446E91E5D1A0300E4A2A4 /* Sports_ViewController.swift in Sources */,
+				B8B167371E6661C600A10D64 /* Sports_TableViewCell.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
