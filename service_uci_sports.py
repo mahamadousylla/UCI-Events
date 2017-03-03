@@ -27,15 +27,15 @@ def get_sport_schedules(param):
     
     dates = tree.xpath('//td[@colspan="6" or @class="e_date"]/text()')
 
-    opponents = tree.xpath('//*[@id="mainbody"]/div/div/table/tbody/tr/td/span//text()')
+    opponents = tree.xpath('//span[@class="e_teamname e_opponent_name e_home"]/text() | //span[@class="e_teamname e_opponent_name"]/text()')
     locations = tree.xpath('//td[@class="e_notes"]/text()')
     scores = tree.xpath('//td[@class="e_result"]/text()')
     times = tree.xpath('//td[@class="e_status"]/text()')
-#     print("dates", dates)
-#     print("opponents", opponents)
-#     print("locations", locations)
-#     print("scores", scores)
-#     print("times", times)
+    print("dates", dates)
+    print("opponents", opponents)
+    print("locations", locations)
+    print("scores", scores)
+    print("times", times)
     
     if param == "w-track":
         opponents = tree.xpath('//span[@class="e_teamname e_opponent_name e_home" or @class="e_teamname e_opponent_name"]/text()')
@@ -68,4 +68,5 @@ def get_sport_schedules(param):
     return jsonify(data=list_of_games)
 
 if __name__ == "__main__":
-    app.run(debug=True)
+#     app.run(debug=True)
+    app.run(host='0.0.0.0')

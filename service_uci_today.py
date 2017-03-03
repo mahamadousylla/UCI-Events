@@ -1,4 +1,4 @@
-from WebCrawler import Spider
+from webcrawler import Spider
 import csv
 from datetime import datetime as dt
 from calendar import monthrange
