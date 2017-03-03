@@ -14,7 +14,7 @@ import Foundation
 class Sports_ViewController: UIViewController,
  UITableViewDelegate, UITableViewDataSource {
 
-    var tableViewDataSource = [] as Array;
+    var tableViewDataSource : [Dictionary<String, String>] = [];
     @IBOutlet weak var tableView: UITableView!
     
     
@@ -23,7 +23,7 @@ class Sports_ViewController: UIViewController,
         super.viewDidLoad()
         
         
-        let url = URL(string: "http://127.0.0.1:5000/m-baskbl")
+        let url = URL(string: "http://169.234.36.105:5000/m-baskbl")
         
         let task = URLSession.shared.dataTask(with: url!) { data, response, error in
             guard error == nil else {
@@ -92,7 +92,7 @@ class Sports_ViewController: UIViewController,
                 //print(tableViewDataSource)
                 
             
-                var dict = tableViewDataSource[indexPath.row] as! [String:String]
+                var dict = tableViewDataSource[indexPath.row]
                 var a : String!
                 a = dict["month"]
                 var b : String!
@@ -106,7 +106,8 @@ class Sports_ViewController: UIViewController,
                 var f : String!
                 f = dict["time"]
                 print("what is tableViewDAta", type(of:dict))
-                cell.dataLabel!.text = a + b + c + d + e + f
+                cell.dataLabel!.text = a + " " + b + " " + c + " " + d + " " + e + " " + f
+                
 //                cell.dataLabel!.text = tableViewDataSource[indexPath.row]
     
     
