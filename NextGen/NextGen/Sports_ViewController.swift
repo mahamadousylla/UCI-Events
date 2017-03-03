@@ -14,8 +14,9 @@ import Foundation
 class Sports_ViewController: UIViewController,
  UITableViewDelegate, UITableViewDataSource {
 
-    @IBOutlet weak var tableView: UITableView!
     var tableViewDataSource = [] as Array;
+    @IBOutlet weak var tableView: UITableView!
+    
     
     
     override func viewDidLoad() {
@@ -40,13 +41,20 @@ class Sports_ViewController: UIViewController,
             for dict in myData {
 //                var s = dict["date"] + " " + dict["location"]  + " " + dict["month"]  + " "
 //                + dict["opponent"] + " " + dict["score"] + " " + dict["time"]
-                self.tableViewDataSource.append(dict)
+                self.tableViewDataSource.append(dict as! [String: String])
             }
             
-//            print(self.tableViewDataSource)
+            print(self.tableViewDataSource)
+            if self.tableViewDataSource.count > 1 {
+                print("dppppne")
+            }
+            
+            self.tableView.reloadData()
         }
         
-//        task.resume()
+        
+        
+        task.resume()
         
         // Do any additional setup after loading the view.
     }
@@ -66,9 +74,8 @@ class Sports_ViewController: UIViewController,
         // return the size of the array to tableview
         func tableView(_ tableView: UITableView,numberOfRowsInSection section: Int) -> Int {
             print("Here tableView")
-//            print(table_ViewDataSource.count)
-            print(self.tableViewDataSource.count)
-            return self.tableViewDataSource.count
+            print(tableViewDataSource.count)
+            return tableViewDataSource.count
         }
     
         // assign the values in your array variable to cells
@@ -84,6 +91,22 @@ class Sports_ViewController: UIViewController,
     
                 //print(tableViewDataSource)
                 
+            
+                var dict = tableViewDataSource[indexPath.row] as! [String:String]
+                var a : String!
+                a = dict["month"]
+                var b : String!
+                b = dict["date"]
+                var c : String!
+                c = dict["location"]
+                var d : String!
+                d = dict["opponent"]
+                var e : String!
+                e = dict["score"]
+                var f : String!
+                f = dict["time"]
+                print("what is tableViewDAta", type(of:dict))
+                cell.dataLabel!.text = a + b + c + d + e + f
 //                cell.dataLabel!.text = tableViewDataSource[indexPath.row]
     
     
