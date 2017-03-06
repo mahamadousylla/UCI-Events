@@ -46,8 +46,7 @@ class Sports_ViewController: UIViewController,
             self.tableView.reloadData()
         }
         
-        
-        
+        //make view load faster
         task.resume()
         
         // Do any additional setup after loading the view.
