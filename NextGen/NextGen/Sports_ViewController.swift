@@ -13,17 +13,20 @@ import Foundation
 
 class Sports_ViewController: UIViewController,
  UITableViewDelegate, UITableViewDataSource {
-
+    
     var buttonClicked = String()
     var tableViewDataSource : [Dictionary<String, String>] = [];
     @IBOutlet weak var tableView: UITableView!
+    
     
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
         
+        print(buttonClicked)
         let url = URL(string: "http://127.0.0.1:5000/" + buttonClicked)
+        
         
         let task = URLSession.shared.dataTask(with: url!) { data, response, error in
             guard error == nil else {
@@ -46,7 +49,8 @@ class Sports_ViewController: UIViewController,
             self.tableView.reloadData()
         }
         
-        //make view load faster
+        
+        
         task.resume()
         
         // Do any additional setup after loading the view.
@@ -56,6 +60,7 @@ class Sports_ViewController: UIViewController,
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
+
     
     
         // return the size of the array to tableview
@@ -70,8 +75,9 @@ class Sports_ViewController: UIViewController,
     
                 // get a reference to our storyboard cell
                 let cell = self.tableView.dequeueReusableCell(withIdentifier: "customCell", for: indexPath) as! Sports_TableViewCell
-    
+
                 
+            
                 var dict = tableViewDataSource[indexPath.row]
                 var a : String!
                 a = dict["month"]
@@ -88,6 +94,7 @@ class Sports_ViewController: UIViewController,
 
                 cell.dataLabel!.text = a + " " + b + " " + c + " " + d + " " + e + " " + f
                 
+    
                 return cell;
         }
     

@@ -1,5 +1,5 @@
 //
-//  SportCategories_ViewController.swift
+//  SportsCategories_ViewController.swift
 //  NextGen
 //
 //  Created by Mahamadou Sylla on 3/6/17.
@@ -8,7 +8,7 @@
 
 import UIKit
 
-class SportCategories_ViewController: UIViewController {
+class SportsCategories_ViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -25,6 +25,7 @@ class SportCategories_ViewController: UIViewController {
     // runs just before you segue to next view
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         // "controller" is a reference to the view you're going to
+        //let controller : Sports_ViewController = segue.destination as! Sports_ViewController
         
         if segue.identifier == "MenBball_Segue" {
             let controller : Sports_ViewController = segue.destination as! Sports_ViewController
@@ -45,12 +46,13 @@ class SportCategories_ViewController: UIViewController {
         else if segue.identifier == "Home_Segue" {
             let controller : Categories_ViewController = segue.destination as! Categories_ViewController
         }
-//        else{
+        
+//        else {
 //            // this null option is if nothing was entered, meaning you encounted a problem.
 //            // maybe display a error alert and segue back to view
+//            //let controller : Sports_ViewController = segue.destination as! Sports_ViewController
 //            controller.buttonClicked = "null";
 //        }
         
     }
-
 }
