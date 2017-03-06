@@ -84,14 +84,9 @@ class Sports_ViewController: UIViewController,
             UITableViewCell {
     
                 // get a reference to our storyboard cell
-                print("madeittttt")
                 let cell = self.tableView.dequeueReusableCell(withIdentifier: "customCell", for: indexPath) as! Sports_TableViewCell
     
-                //let cell:UITableViewCell=UITableViewCell(withIdentifier: "cell", for: indexPath) as! TableViewCell
-    
-                //print(tableViewDataSource)
                 
-            
                 var dict = tableViewDataSource[indexPath.row]
                 var a : String!
                 a = dict["month"]
