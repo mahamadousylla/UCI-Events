@@ -13,7 +13,8 @@ import Foundation
 
 class Sports_ViewController: UIViewController,
  UITableViewDelegate, UITableViewDataSource {
-
+    
+    var buttonClicked = String()
     var tableViewDataSource : [Dictionary<String, String>] = [];
     @IBOutlet weak var tableView: UITableView!
     
@@ -23,7 +24,9 @@ class Sports_ViewController: UIViewController,
         super.viewDidLoad()
         
         
-        let url = URL(string: "http://169.234.36.105:5000/m-baskbl")
+        print(buttonClicked)
+        let url = URL(string: "http://127.0.0.1:5000/" + buttonClicked)
+        
         
         let task = URLSession.shared.dataTask(with: url!) { data, response, error in
             guard error == nil else {
@@ -39,15 +42,9 @@ class Sports_ViewController: UIViewController,
             
             let myData = (json["data"] as! NSArray) as Array
             for dict in myData {
-//                var s = dict["date"] + " " + dict["location"]  + " " + dict["month"]  + " "
-//                + dict["opponent"] + " " + dict["score"] + " " + dict["time"]
                 self.tableViewDataSource.append(dict as! [String: String])
             }
             
-            print(self.tableViewDataSource)
-            if self.tableViewDataSource.count > 1 {
-                print("dppppne")
-            }
             
             self.tableView.reloadData()
         }
@@ -63,18 +60,11 @@ class Sports_ViewController: UIViewController,
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
-    
-//    func returnExampleArray() -> [Array<Any>] {
-    
-    
-//        var tableViewDataSource = ["One", "Two", "Three",
-//                                   "Four", "Five", "Six"];
+
     
     
         // return the size of the array to tableview
         func tableView(_ tableView: UITableView,numberOfRowsInSection section: Int) -> Int {
-            print("Here tableView")
-            print(tableViewDataSource.count)
             return tableViewDataSource.count
         }
     
@@ -86,10 +76,7 @@ class Sports_ViewController: UIViewController,
                 // get a reference to our storyboard cell
                 print("madeittttt")
                 let cell = self.tableView.dequeueReusableCell(withIdentifier: "customCell", for: indexPath) as! Sports_TableViewCell
-    
-                //let cell:UITableViewCell=UITableViewCell(withIdentifier: "cell", for: indexPath) as! TableViewCell
-    
-                //print(tableViewDataSource)
+
                 
             
                 var dict = tableViewDataSource[indexPath.row]
