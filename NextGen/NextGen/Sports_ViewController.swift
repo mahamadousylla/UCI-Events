@@ -14,16 +14,16 @@ import Foundation
 class Sports_ViewController: UIViewController,
  UITableViewDelegate, UITableViewDataSource {
 
+    var buttonClicked = String()
     var tableViewDataSource : [Dictionary<String, String>] = [];
     @IBOutlet weak var tableView: UITableView!
-    
     
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
         
-        let url = URL(string: "http://169.234.36.105:5000/m-baskbl")
+        let url = URL(string: "http://127.0.0.1:5000/" + buttonClicked)
         
         let task = URLSession.shared.dataTask(with: url!) { data, response, error in
             guard error == nil else {
@@ -39,15 +39,9 @@ class Sports_ViewController: UIViewController,
             
             let myData = (json["data"] as! NSArray) as Array
             for dict in myData {
-//                var s = dict["date"] + " " + dict["location"]  + " " + dict["month"]  + " "
-//                + dict["opponent"] + " " + dict["score"] + " " + dict["time"]
                 self.tableViewDataSource.append(dict as! [String: String])
             }
             
-            print(self.tableViewDataSource)
-            if self.tableViewDataSource.count > 1 {
-                print("dppppne")
-            }
             
             self.tableView.reloadData()
         }
@@ -64,17 +58,9 @@ class Sports_ViewController: UIViewController,
         // Dispose of any resources that can be recreated.
     }
     
-//    func returnExampleArray() -> [Array<Any>] {
-    
-    
-//        var tableViewDataSource = ["One", "Two", "Three",
-//                                   "Four", "Five", "Six"];
-    
     
         // return the size of the array to tableview
         func tableView(_ tableView: UITableView,numberOfRowsInSection section: Int) -> Int {
-            print("Here tableView")
-            print(tableViewDataSource.count)
             return tableViewDataSource.count
         }
     
@@ -100,11 +86,9 @@ class Sports_ViewController: UIViewController,
                 e = dict["score"]
                 var f : String!
                 f = dict["time"]
-                print("what is tableViewDAta", type(of:dict))
+
                 cell.dataLabel!.text = a + " " + b + " " + c + " " + d + " " + e + " " + f
-                
-//                cell.dataLabel!.text = tableViewDataSource[indexPath.row]
-    
+                    
     
                 return cell;
         }
