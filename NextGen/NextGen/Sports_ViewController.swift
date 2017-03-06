@@ -88,8 +88,7 @@ class Sports_ViewController: UIViewController,
                 f = dict["time"]
 
                 cell.dataLabel!.text = a + " " + b + " " + c + " " + d + " " + e + " " + f
-                    
-    
+                
                 return cell;
         }
     
