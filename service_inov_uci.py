@@ -1,26 +1,27 @@
 from lxml import html
 import requests
 from lxml import html
-from flask import Flask
-from flask import request
-from flask import jsonify
+from flask import *
 import requests
+import json
+from datetime import datetime as dt
+from calendar import monthrange
 
-##app = Flask(__name__)
+# app = Flask(__name__)
 
 
 
 #Service Innovation UCI
-##@app.route("/", methods=['GET'])
-def run_app():
+# @app.route("/", methods=['GET'])
+def innovate():
     url = 'http://innovation.uci.edu/events/'
     page = requests.get(url)
     tree = html.fromstring(page.content)
-
+    now = dt.now();
     #date
     dates = tree.xpath('//*[@id]/h1/div/span/text()');
     dates = list(map(str.strip, dates));
-    dates = [x for x in dates if x != '']
+    dates = [str(now.month)+ "/" + x.split(" ")[-1] + "/{}".format(now.year) for x in dates if x != '']
 ##    print(dates);
 ##    print(dates);
 
@@ -50,13 +51,14 @@ def run_app():
             "title": titles[i].strip(),
             "date": dates[i].strip(),
             "location": address.strip(),
-            "Info": info[i].strip()
+            "info": info[i].strip()
             }
         master_list.append(obj);
+        
 
-    return master_list;
-
-##if __name__ == "__main__":
-##
-##    app.run(debug=True);
+    return json.dumps(master_list,  sort_keys=True, indent=4, separators=(',', ': '), default = dict);
+    # return jsonify(data = master_list)
+    
+# if __name__ == "__main__":
+    # app.run(host = '127.0.0.1', port = 5002, debug=True);
        

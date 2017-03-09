@@ -5,10 +5,11 @@ from calendar import monthrange
 from flask import Flask
 from flask import jsonify
 import requests
+import json
 
-##app = Flask(__name__);
+# app = Flask(__name__);
 
-##@app.route("/", methods=['GET'])
+# @app.route("/", methods=['GET'])
 def process():
     titles = []
     time = []
@@ -40,28 +41,36 @@ def process():
 
         #Date
         for k in range(len(crawler.get_info())):
-            date.append(now.strftime('%B') + " {}, {}".format(i, now.year))
-
+            date.append(now.strftime('%d') + "/{}/{}".format(i, now.year))
+        
         for i in range(len(titles)):
             if titles[i] == 'Striking a Balance: Conservation and...':
                 time.insert(i, 'x')
         
     master_list = []
     ##print(len(location), len(titles), len(time), len(descriptions));
+    titles = [ s.encode('ascii' , errors = 'ignore') for s in titles];
+    titles = [s.decode().replace('\"', '') for s in titles];
+    # print(titles);
+    descriptions = [ s.encode('ascii' , errors = 'ignore') for s in descriptions];
+    descriptions = [s.decode().replace('\n', '') for s in descriptions];
     lowest = min(len(location), len(titles), len(time), len(descriptions))
     for i in range(lowest):
         dicti = {
             "location": location[i].strip(),
             "time": time[i].strip(),
-            "description": descriptions[i].strip(),
+            "info": descriptions[i].strip(),
             "date": date[i].strip(),
             "title": titles[i].strip()
             }
         master_list.append(dicti)
    
-    return master_list
+    return json.dumps(master_list,  sort_keys=True, indent=4, separators=(',', ': '), default = dict);
 
-##if __name__ == '__main__':
-####    run(host = '127.0.0.1', port = 5000);
-##    app.run(host = '127.0.0.2',debug=True)
-####    process();
+process();
+# if __name__ == '__main__':
+##    run(host = '127.0.0.1', port = 5000);
+    # app.run(host = '127.0.0.1', port = 5001,debug=True)
+    
+    
+
