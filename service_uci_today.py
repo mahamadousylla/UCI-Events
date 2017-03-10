@@ -1,15 +1,16 @@
-from webcrawler import Spider
-import csv
+from WebCrawler import Spider
+
 from datetime import datetime as dt
 from calendar import monthrange
+from flask import Flask
 from flask import jsonify
-from json import dumps
 import requests
-from bottle import *
+import json
 
-@get('/')
+# app = Flask(__name__);
+
+# @app.route("/", methods=['GET'])
 def process():
-    print("starting...")
     titles = []
     time = []
     descriptions = []
@@ -17,7 +18,7 @@ def process():
     date = []
     now = dt.now()
     #iterate from current day to the last day of the Month
-    for i in range(now.day, now.day+2):
+    for i in range(now.day, now.day+10):
         url = 'https://today.uci.edu/calendar/day/2017/'+ str(now.month) + '/' + str(i)
         crawler = Spider(url)
         
@@ -40,29 +41,36 @@ def process():
 
         #Date
         for k in range(len(crawler.get_info())):
-            date.append(now.strftime('%B') + " {}, {}".format(i, now.year))
-
+            date.append(now.strftime('%d') + "/{}/{}".format(i, now.year))
+        
         for i in range(len(titles)):
             if titles[i] == 'Striking a Balance: Conservation and...':
                 time.insert(i, 'x')
         
-    master_list = list();
+    master_list = []
     ##print(len(location), len(titles), len(time), len(descriptions));
+    titles = [ s.encode('ascii' , errors = 'ignore') for s in titles];
+    titles = [s.decode().replace('\"', '') for s in titles];
+    # print(titles);
+    descriptions = [ s.encode('ascii' , errors = 'ignore') for s in descriptions];
+    descriptions = [s.decode().replace('\n', '') for s in descriptions];
     lowest = min(len(location), len(titles), len(time), len(descriptions))
-
     for i in range(lowest):
         dicti = {
-            "title": titles[i],
-            "location": location[i],
-            "time": time[i],
-            "description": descriptions[i],
-            "date": date[i]
+            "location": location[i].strip(),
+            "time": time[i].strip(),
+            "info": descriptions[i].strip(),
+            "date": date[i].strip(),
+            "title": titles[i].strip()
             }
         master_list.append(dicti)
-##    print(master_list)
-    return '<pre>{}</pre>'.format(dumps(master_list, indent = 4, sort_keys = True))
+   
+    return json.dumps(master_list,  sort_keys=True, indent=4, separators=(',', ': '), default = dict);
 
+process();
+# if __name__ == '__main__':
+##    run(host = '127.0.0.1', port = 5000);
+    # app.run(host = '127.0.0.1', port = 5001,debug=True)
+    
+    
 
-if __name__ == '__main__':
-    run(host = 'localhost', port = 8080);
-##    app.run(debug=True)

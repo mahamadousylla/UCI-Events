@@ -27,7 +27,8 @@ def get_sport_schedules(param):
     
     dates = tree.xpath('//td[@colspan="6" or @class="e_date"]/text()')
 
-    opponents = tree.xpath('//span[@class="e_teamname e_opponent_name e_home"]/text() | //span[@class="e_teamname e_opponent_name"]/text()')
+    opponents = tree.xpath('//span[@class="team-name"]/text()')
+#     opponents = tree.xpath('//span[@class="e_team e_opponent_name e_home"]/text() | //span[@class="e_teamname e_opponent_name"]/text()')
     locations = tree.xpath('//td[@class="e_notes"]/text()')
     scores = tree.xpath('//td[@class="e_result"]/text()')
     times = tree.xpath('//td[@class="e_status"]/text()')
