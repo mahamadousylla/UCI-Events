@@ -2,6 +2,9 @@ from lxml import html
 from flask import Flask
 from flask import request
 from flask import jsonify
+from datetime import datetime as dt
+from calendar import monthrange
+import calendar
 import requests
 
 app = Flask(__name__)
@@ -44,20 +47,25 @@ def get_sport_schedules(param):
     for i in dates:
         if i == "\xa0":
             dates.remove(i)
-    
-    months = ["january", "february", "march", "april", "may", "june", "july", "august", "september", "october", "november", "december"]
-    
+        
     
     current_month = ""
+    months = ["january", "february", "march", "april", "may", "june", "july", "august", "september", "october", "november", "december"]
+    
+    now = dt.now()
     for i in range(len(scores)):
         if dates[i].lower() in months:
             current_month = dates[i]
             dates = dates[0:i] + dates[i+1:]
     
+        cur_day = dates[i].strip().split(" ")[-1]
+        if (dates[i].strip().split(" ")[-1] == ""):
+            cur_day = dates[i-1].strip().split(" ")[-1]
+            
         dict = {
     
             "month": current_month,
-            "date": dates[i].strip(),
+            "date": str(list(calendar.month_name).index(current_month))+ "/" + cur_day + "/" + str(now.year),
             "opponent": opponents[i],
             "location": locations[i],
             "score": scores[i].strip(),
