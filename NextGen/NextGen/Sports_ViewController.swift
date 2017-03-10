@@ -23,10 +23,11 @@ class Sports_ViewController: UIViewController,
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        var s = "http://www.masisnguyen.com/randy/mysql_proxy.php?command=SELECTT%20*%20FROM%20"
+        var loopBack = "http://127.0.0.1:5000/"
         
-        print(buttonClicked)
-        let url = URL(string: "http://127.0.0.1:5000/" + buttonClicked)
-        
+        let url = URL(string: "http://www.masisnguyen.com/randy/mysql_proxy.php?command=SELECTT%20*%20FROM%20" + buttonClicked)
+        print(url)
         
         let task = URLSession.shared.dataTask(with: url!) { data, response, error in
             guard error == nil else {
@@ -45,7 +46,7 @@ class Sports_ViewController: UIViewController,
                 self.tableViewDataSource.append(dict as! [String: String])
             }
             
-            
+            print(self.tableViewDataSource)
             self.tableView.reloadData()
         }
         

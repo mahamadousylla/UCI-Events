@@ -29,7 +29,7 @@ class SportsCategories_ViewController: UIViewController {
         
         if segue.identifier == "MenBball_Segue" {
             let controller : Sports_ViewController = segue.destination as! Sports_ViewController
-            controller.buttonClicked = "m-baskbl";
+            controller.buttonClicked = "m_baskl";
         }
         else if segue.identifier == "WomenBball_Segue" {
             let controller : Sports_ViewController = segue.destination as! Sports_ViewController
