@@ -77,5 +77,5 @@ def get_sport_schedules(param):
     return jsonify(data=list_of_games)
 
 if __name__ == "__main__":
-    app.run(debug=True)
-#     app.run(host='0.0.0.0')
+#     app.run(debug=True)
+    app.run(host='0.0.0.0')

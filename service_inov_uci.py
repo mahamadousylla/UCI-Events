@@ -7,12 +7,12 @@ import json
 from datetime import datetime as dt
 from calendar import monthrange
 
-# app = Flask(__name__)
+app = Flask(__name__)
 
 
 
 #Service Innovation UCI
-# @app.route("/", methods=['GET'])
+@app.route("/", methods=['GET'])
 def innovate():
     url = 'http://innovation.uci.edu/events/'
     page = requests.get(url)
@@ -56,9 +56,9 @@ def innovate():
         master_list.append(obj);
         
 
-    return json.dumps(master_list,  sort_keys=True, indent=4, separators=(',', ': '), default = dict);
-    # return jsonify(data = master_list)
+#     return json.dumps(master_list,  sort_keys=True, indent=4, separators=(',', ': '), default = dict);
+    return jsonify(data = master_list)
     
-# if __name__ == "__main__":
-    # app.run(host = '127.0.0.1', port = 5002, debug=True);
-       
+if __name__ == "__main__":
+    app.run(debug=True);
+        

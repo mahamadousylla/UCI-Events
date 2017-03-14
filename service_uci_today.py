@@ -1,4 +1,4 @@
-from WebCrawler import Spider
+from webcrawler import Spider
 
 from datetime import datetime as dt
 from calendar import monthrange
@@ -7,9 +7,9 @@ from flask import jsonify
 import requests
 import json
 
-# app = Flask(__name__);
-
-# @app.route("/", methods=['GET'])
+app = Flask(__name__);
+ 
+@app.route("/", methods=['GET'])
 def process():
     titles = []
     time = []
@@ -65,10 +65,12 @@ def process():
             }
         master_list.append(dicti)
    
-    return json.dumps(master_list,  sort_keys=True, indent=4, separators=(',', ': '), default = dict);
+#     return json.dumps(master_list,  sort_keys=True, indent=4, separators=(',', ': '), default = dict);
+    return jsonify(data = master_list)
 
-process();
-# if __name__ == '__main__':
+# process();
+if __name__ == '__main__':
+    app.run(debug=True)
 ##    run(host = '127.0.0.1', port = 5000);
     # app.run(host = '127.0.0.1', port = 5001,debug=True)
     

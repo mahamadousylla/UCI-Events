@@ -33,15 +33,15 @@ class SportsCategories_ViewController: UIViewController {
         }
         else if segue.identifier == "WomenBball_Segue" {
             let controller : Sports_ViewController = segue.destination as! Sports_ViewController
-            controller.buttonClicked = "w-baskbl";
+            controller.buttonClicked = "w_baskl";
         }
         else if segue.identifier == "MenBaseball_Segue" {
             let controller : Sports_ViewController = segue.destination as! Sports_ViewController
-            controller.buttonClicked = "m-basebl";
+            controller.buttonClicked = "m_baseball";
         }
         else if segue.identifier == "WomenTrack_Segue" {
             let controller : Sports_ViewController = segue.destination as! Sports_ViewController
-            controller.buttonClicked = "w-track";
+            controller.buttonClicked = "w_track";
         }
         else if segue.identifier == "Home_Segue" {
             let controller : Categories_ViewController = segue.destination as! Categories_ViewController

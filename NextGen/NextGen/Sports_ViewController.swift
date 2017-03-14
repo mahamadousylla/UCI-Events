@@ -24,10 +24,8 @@ class Sports_ViewController: UIViewController,
         super.viewDidLoad()
         
         var s = "http://www.masisnguyen.com/randy/mysql_proxy.php?command=SELECTT%20*%20FROM%20"
-        var loopBack = "http://127.0.0.1:5000/"
         
-        let url = URL(string: "http://www.masisnguyen.com/randy/mysql_proxy.php?command=SELECTT%20*%20FROM%20" + buttonClicked)
-        print(url)
+        let url = URL(string: s + buttonClicked  + "%20ORDER%20BY%20eventDate%20ASC")
         
         let task = URLSession.shared.dataTask(with: url!) { data, response, error in
             guard error == nil else {
@@ -81,19 +79,17 @@ class Sports_ViewController: UIViewController,
             
                 var dict = tableViewDataSource[indexPath.row]
                 var a : String!
-                a = dict["month"]
+                a = dict["eventDate"]
                 var b : String!
-                b = dict["date"]
+                b = dict["location"]
                 var c : String!
-                c = dict["location"]
+                c = dict["opponent"]
                 var d : String!
-                d = dict["opponent"]
+                d = dict["score"]
                 var e : String!
-                e = dict["score"]
-                var f : String!
-                f = dict["time"]
+                e = dict["eventTime"]
 
-                cell.dataLabel!.text = a + " " + b + " " + c + " " + d + " " + e + " " + f
+                cell.dataLabel!.text = a + " " + b + " " + c + " " + d + " " + e
                 
     
                 return cell;
